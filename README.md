@@ -1,23 +1,24 @@
-# MAX PROFIT COUNTER
+# Max Profit Counter & Array Shifter
 
-This repository is for technical test purpose only. This repository built with [Node.js](https://nodejs.org/).
+This repository is for technical test purpose only. It's built with [Node.js](https://nodejs.org/).
 
 
 ## Installation
 
 * Install [Node.js](https://nodejs.org/).
-* Start the server.
+* Start the server. 
+* For the first test:
 ```sh
-$ npm start
+$ npm run test-1
+```
+* For the second test:
+```sh
+$ npm run test-2
 ```
 
-## How to use
-#### There are 2 variables you can customize:
 
-* __prices: array__
+## Database Scheme for the last test
 
-    This variable determine the price of each day.
+Here's a screenshot of the scheme of messaging database:
 
-* __maxPurchases: int__
-
-    This variable determine how many transactions you could make.
+![alt text](https://github.com/ffauzann/max-profit-counter/blob/master/DBScheme.png?raw=true)
