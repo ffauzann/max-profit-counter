@@ -1,13 +1,30 @@
-function maxProfit(prices = [], maxPurchases = 0) {
+// * HERE'S VARIABLES YOU CAN COSTUMIZE
+// let prices = [ 3, 12, 0, 9, 2, 7, 50, 77, 99, 4, 13, 50, 80 ]; // ! UNACCEPTABLE PRICES
+// let prices = [ 3, 12, 1, 9, 2, 7, 50, 77, 99, 4, 13, 50, 'FIKRY' ]; // ! UNACCEPTABLE PRICES
+let prices = [ 3, 12, 1, 9, 2, 7, 50, 77, 99, 4, 13, 50, 80 ]; // * ACCEPTABLE PRICES
+let maxPurchases = 5;
+
+// * GETTING READY TO GO
+maxProfit(prices, maxPurchases, (profit, currentPurchases, details) => {
+	console.log('Profit: ' + profit);
+	console.log('Times of purchase: ' + currentPurchases);
+	console.log('Purchase details: ', details);
+});
+
+// * NEVERMIND, IT'S JUST A TINY KITCHEN THO.
+function maxProfit(prices = [], maxPurchases = 0, callback) {
 	// ! ABORT IF THE INPUT IS INVALID
-	if (!prices || !maxPurchases) {
+	if (!prices || !maxPurchases || Math.min(...prices) <= 0 || prices.some(isNaN)) {
 		console.log('Invalid input');
 		return;
 	}
 
+	// * HELPER VARIABLES
 	let isHoldingStocks = false; // * BOOLEAN WHETHER THERE'S STOCK BEING HOLD OR NOT
 	let heldIndex = -1; // * INDEX OF THE STOCK IN HAND
-	let currentPurchases = 0; // * COUNTER OF PURCHASE HAS BEEN MADE
+	let currentPurchases = 0; // * COUNTER OF PURCHASE THAT HAS BEEN MADE
+
+	// * OUTPUT VARIABLES
 	let profit = 0;
 	let details = [];
 
@@ -23,7 +40,6 @@ function maxProfit(prices = [], maxPurchases = 0) {
 			heldIndex = i;
 			currentPurchases++;
 			isHoldingStocks = true;
-			console.log('buy in: ' + prices[heldIndex]);
 		}
 
 		// * SELL THE STOCK IN HAND IF:
@@ -35,18 +51,12 @@ function maxProfit(prices = [], maxPurchases = 0) {
 			isHoldingStocks &&
 			(prices[heldIndex] > prices[i + 1] || prices[i] > prices[i + 1] || i === prices.length - 1)
 		) {
-			profit += prices[i] - prices[heldIndex];
-			details.push({ buy: prices[heldIndex], sell: prices[i] });
+			let currentProfit = prices[i] - prices[heldIndex];
+			profit += currentProfit;
+			details.push({ buy: prices[heldIndex], sell: prices[i], profit: currentProfit });
 			heldIndex = -1;
 			isHoldingStocks = false;
-			console.log('sell out: ' + prices[i]);
 		}
 	}
-	console.log('\nProfit: ' + profit);
-	console.log('Times of purchase: ' + currentPurchases);
-	console.log('Purchase details: ', details);
+	callback(profit, currentPurchases, details);
 }
-
-let prices = [ 3, 12, 1, 9, 2, 99, 20, 77, 4, 13, 50, 80 ];
-let maxPurchases = 5;
-maxProfit(prices, maxPurchases);
