@@ -1,11 +1,11 @@
 # MAX PROFIT COUNTER
 
-This repository is for technical test purpose only. 
+This repository is for technical test purpose only. This repository built with [Node.js](https://nodejs.org/).
 
 
 ## Installation
 
-It requires [Node.js](https://nodejs.org/)
+* Install [Node.js](https://nodejs.org/).
 * Start the server.
 ```sh
 $ npm start
